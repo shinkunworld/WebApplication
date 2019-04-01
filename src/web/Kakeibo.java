@@ -3,39 +3,45 @@ package web;
 import java.sql.Timestamp;
 
 public class Kakeibo {
-	// 本来はprivate
-	private int id;
-	private int income;
-	private int expense;
-	private String details;
-	private Timestamp date;
 
-	public Kakeibo(int id, int income, int expense, String details, Timestamp date) {
+	private int id;
+	private Timestamp date;
+	private String details;
+	private String remark;
+	private String payment;
+	private int amount;
+
+	public Kakeibo(int id, Timestamp date, String details, String remark, String payment, int amount) {
 		this.id = id;
-		this.income = income;
-		this.expense = expense;
-		this.details = details;
 		this.date = date;
+		this.details = details;
+		this.remark = remark;
+		this.payment = payment;
+		this.amount = amount;
 	}
 
 	public int getId() {
 		return id;
 	}
 
-	public int getIncome() {
-		return income;
-	}
-
-	public int getExpense() {
-		return expense;
+	public Timestamp getDate() {
+		return date;
 	}
 
 	public String getDetails() {
 		return details;
 	}
 
-	public Timestamp getDate() {
-		return date;
+	public String getRemark() {
+		return remark;
+	}
+
+	public String getPayment() {
+		return payment;
+	}
+
+	public int getAmount() {
+		return amount;
 	}
 
 }

@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 @WebServlet("/UpdateServlet")
 public class UpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -20,7 +19,7 @@ public class UpdateServlet extends HttpServlet {
 	 */
 	public UpdateServlet() {
 		super();
-		
+
 	}
 
 	/**
@@ -32,13 +31,17 @@ public class UpdateServlet extends HttpServlet {
 		SampleDAO dao = new SampleDAO();
 		request.setCharacterEncoding("UTF-8");
 		int id = Integer.parseInt(request.getParameter("id"));
-		int income = Integer.parseInt(request.getParameter("income"));
-		int expense = Integer.parseInt(request.getParameter("expense"));
 		String details = request.getParameter("details");
+
+		String remark = request.getParameter("remark");
+
+		String payment = request.getParameter("payment");
+
+		int amount = Integer.parseInt(request.getParameter("amount"));
 
 		HttpSession session = request.getSession();
 		// 処理結果に応じてメッセージを変える
-		if (dao.update(id, income, expense, details) == 0) {
+		if (dao.update(id, details, remark, payment, amount) == 0) {
 			session.setAttribute("message", "更新失敗");
 		} else {
 			session.setAttribute("message", "更新完了");
@@ -49,7 +52,6 @@ public class UpdateServlet extends HttpServlet {
 
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub

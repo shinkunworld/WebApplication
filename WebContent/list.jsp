@@ -12,10 +12,67 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Full VIEW</title>
 <style>
 <
-style>table {
+style>#jb-container {
+	width: 940px;
+	margin: 10px auto;
+	padding: 20px;
+	border: 1px solid #bcbcbc;
+}
+
+
+
+#jb-content {
+	width: 900px;
+	padding: 20px;
+	margin-bottom: 20px;
+	float: left;
+	border: 1px solid #bcbcbc;
+	margin-bottom: 20px;
+	float: left;
+}
+
+#jb-footer {
+	clear: both;
+	padding: 5px;
+	border: 1px solid #bcbcbc;
+	a: link{ color: blue;
+	text-decoration: none;
+}
+
+@media ( max-width : 480px ) {
+	#jb-container {
+		width: auto;
+	}
+	#jb-content {
+		float: none;
+		width: auto;
+	}
+	#jb-footer {
+		float: none;
+		width: auto;
+	}
+}
+
+a:visited {
+	color: purple;
+	text-decoration: none;
+}
+
+a:hover {
+	color: red;
+	text-decoration: underline;
+}
+
+a:active {
+	color: white;
+	background-color: green;
+}
+
+}
+table {
 	border-collapse: separate;
 	border-spacing: 1px;
 	text-align: center;
@@ -43,39 +100,50 @@ td {
 
 </head>
 <body>
-	<table>
-		<thead>
-			<tr>
-				<th>管理番号</th>
-				<th>収入</th>
-				<th>支出</th>
-				<th>コメント</th>
-				<th>UPDATE</th>
-				<th>DELETE</th>
-				<th>DATE</th>
-			</tr>
-		</thead>
-		<tbody>
-			<%
-			//	for (int i = 0; i < list.size(); i++) {
-					for(Kakeibo kkb:list ){
-			%>
-			<tr>
-				<td>項目.<%=kkb.getId()%></td>
-				<td><%=kkb.getIncome()%>円</td>
-				<td><%=kkb.getExpense()%>円</td>
-				<td><%=kkb.getDetails()%></td>
-				<td><a href="update.jsp?id=<%=kkb.getId()%>">変更</a></td>
-				<td><a href="DeleteServlet?id=<%=kkb.getId()%>">削除</a></td>
-				<td><%=kkb.getDate()%></td>
 
-</tr>
-			<%
-				}
-			%>
-		</tbody>
-	</table>
+	<div id="jb-container">
+		
+		<div id="jb-content">
+			<table>
+				<thead>
+					<tr>
+						<th>管理番号</th>
+						<th>日付</th>
+						<th>内容</th>
+						<th>備考</th>
+						<th>決済方法</th>
+						<th>金額</th>
+						<th>UPDATE</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
+						for (Kakeibo kkb : list) {
+					%>
+					<tr>
+						<td>項目.<%=kkb.getId()%></td>
+						<td><%=kkb.getDate()%></td>
+						<td><%=kkb.getDetails()%>円</td>
+						<td><%=kkb.getRemark()%></td>
+						<td><%=kkb.getPayment()%></td>
+						<td><%=kkb.getAmount()%></td>
+						<td><a href="update.jsp?id=<%=kkb.getId()%>">変更</a></td>
+						<td><a href="DeleteServlet?id=<%=kkb.getId()%>">削除</a></td>
+						
 
+					</tr>
+					<%
+						}
+					%>
+				</tbody>
+			</table>
+			<a href="index.jsp">トップページへ</a>
+		</div>
+
+		<div id="jb-footer">
+			<p>Copyright © 2019 Shin</p>
+		</div>
+	</div>
 
 </body>
 </html>

@@ -28,14 +28,13 @@ public class InsertServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		//パラメータを受け取る
-
-		int income=Integer.parseInt(request.getParameter("income"));
-		int expense=Integer.parseInt(request.getParameter("expense"));
-
 		String details=request.getParameter("details");
+		String remark=request.getParameter("remark");
+		String payment=request.getParameter("payment");
+		int amount=Integer.parseInt(request.getParameter("amount"));
 		HttpSession session = request.getSession();
 		//処理結果に応じてメッセージを変える
-		if(dao.insert(income,expense,details) == 0 ) {
+		if(dao.insert(details,remark,payment,amount) == 0 ) {
 			session.setAttribute("message", "登録失敗");
 		}else {
 			session.setAttribute("message", "登録完了");

@@ -57,11 +57,12 @@ public class SampleDAO {
 //					p.setDate(rs.getTimestamp("date"));
 //					list.add(p);
 					int id = rs.getInt("id");
-					int income = rs.getInt("income");
-					int expense = rs.getInt("expense");
-					String details = rs.getString("details");
 					Timestamp date = rs.getTimestamp("date");
-					Kakeibo kakeibo = new Kakeibo(id, income, expense, details, date);
+					String details = rs.getString("details");
+					String remark = rs.getString("remark");
+					String payment = rs.getString("payment");
+					int amount = rs.getInt("amount");
+					Kakeibo kakeibo = new Kakeibo(id, date, details, remark, payment, amount);
 					list.add(kakeibo);
 				}
 				rs.close();
@@ -102,20 +103,19 @@ public class SampleDAO {
 	}
 
 	// sampletbに追加メソッド
-	public int insert(int income, int expense, String details) {
+	public int insert(String details, String remark, String payment, int amount) {
 		int rs = 0;
 		// InsertMiniの内容をペーストする
 		connection();
 		if (con != null) {
-			String sql = "insert into b(Income,Expense,Details,date) values(?,?,?,now())";
+			String sql = "insert into b(date,details,remark,payment,amount) values(now(),?,?,?,?)";
 			try {
 				PreparedStatement ps = con.prepareStatement(sql);
-
-				// ps.setDate(1, date);
-				// ps.setDate(1, new Date(date.getTime()));
-				ps.setInt(1, income);
-				ps.setInt(2, expense);
-				ps.setString(3, details);
+				
+				ps.setString(1, details);
+				ps.setString(2, remark);
+				ps.setString(3, payment);
+				ps.setInt(4, amount);
 				rs = ps.executeUpdate();
 				System.out.println("操作した行数は" + rs + "行です");
 				ps.close();
@@ -129,7 +129,7 @@ public class SampleDAO {
 	}
 
 	// 変更メソッド
-	public int update(int id, int income, int expense, String details) {
+	public int update(int id, String details, String remark, String payment, int amount) {
 		int rs = 0;
 		// InsertMiniの内容をペーストする
 		connection();
@@ -137,13 +137,14 @@ public class SampleDAO {
 			// update sampletb set name = 'aa', age=10 where id = 10;
 			// update sampletb set name = ?, age=? where id = ?;
 
-			String sql = "update b set Income=?, Expense=?,Details=?,Date=now() where id = ?";
+			String sql = "update b set date=now(),details=?, remark=?,payment=?,amount=? where id = ?";
 			try {
 				PreparedStatement ps = con.prepareStatement(sql);
-				ps.setInt(1, income);
-				ps.setInt(2, expense);
-				ps.setString(3, details);
-				ps.setInt(4, id);
+				ps.setString(1, details);
+				ps.setString(2, remark);
+				ps.setString(3, payment);
+				ps.setString(4, payment);
+				ps.setInt(5, id);
 				rs = ps.executeUpdate();
 				System.out.println("操作した行数は" + rs + "行です");
 				ps.close();

@@ -12,12 +12,19 @@
 <body>
 	管理番号:<%=id%><br>
 	<form action="UpdateServlet" method="POST">
-		ID<input type="hidden" name="id" value="<%=id%>"><br>
 
-	INCOME<input type="text" name="income"><br>
-		 EXPENSE<input type="text" name="expense"><br>
-	DETAILS<input type="text" name="details"><br>
-		<input type="submit" value="変更"><br>
+Details<input type="text" name="details"><br>
+Remark<input type="text" name="remark"><br>
+Payment<br>
+<input type="radio" name="payment" value="amount">現金
+<input type="radio" name="payment" value="card">カード
+<input type="radio" name="payment" value="point">ポイント
+
+ 
+<br>
+Amount<input type="text" name="amount"><br>
+
+<input type="submit" value="登録">
 	</form>
 </body>
 </html>
