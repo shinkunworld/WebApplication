@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList"%>
 
-<%@ page import="web.Kakeibo"%>
+<%@ page import="model.Kakeibo"%>
 
 <%
 	//スコープからデータを受け取る、キャストする必要がある
@@ -12,7 +12,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Full VIEW</title>
+
 <style>
 <
 style>#jb-container {
@@ -86,7 +88,7 @@ th {
 	font-weight: bold;
 	vertical-align: top;
 	color: #fff;
-	background: #ce4869;
+	background: #ffb8c6;
 }
 
 td {
@@ -94,8 +96,10 @@ td {
 	padding: 10px;
 	vertical-align: top;
 	border-bottom: 1px solid #ccc;
-	background: #eee;
+	background: #f0fff0;
 }
+
+
 </style>
 
 </head>
@@ -113,7 +117,7 @@ td {
 						<th>備考</th>
 						<th>決済方法</th>
 						<th>金額</th>
-						<th>UPDATE</th>
+						<th>修正項目</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -123,13 +127,14 @@ td {
 					<tr>
 						<td>項目.<%=kkb.getId()%></td>
 						<td><%=kkb.getDate()%></td>
-						<td><%=kkb.getDetails()%>円</td>
+						<td><%=kkb.getDetails()%></td>
 						<td><%=kkb.getRemark()%></td>
 						<td><%=kkb.getPayment()%></td>
-						<td><%=kkb.getAmount()%></td>
-						<td><a href="update.jsp?id=<%=kkb.getId()%>">変更</a></td>
-						<td><a href="DeleteServlet?id=<%=kkb.getId()%>">削除</a></td>
-						
+						<td><%=kkb.getAmount()%>円</td>
+						<td><a href="update.jsp?id=<%=kkb.getId()%>">変更</a>
+						<br>
+						<a href="DeleteServlet?id=<%=kkb.getId()%>">削除</a>
+						</td>
 
 					</tr>
 					<%
@@ -137,11 +142,11 @@ td {
 					%>
 				</tbody>
 			</table>
-			<a href="index.jsp">トップページへ</a>
+		<div style="text-align:center">	<a href="index.jsp">トップページへ</a></div>
 		</div>
 
 		<div id="jb-footer">
-			<p>Copyright © 2019 Shin</p>
+		<div style="text-align:center">	<p>Copyright © 2019 Shin</p></div>
 		</div>
 	</div>
 

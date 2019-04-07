@@ -8,7 +8,7 @@ String mes = (String)session.getAttribute("message");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>result</title>
 </head>
 <body>
 結果：

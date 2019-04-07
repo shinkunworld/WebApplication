@@ -1,4 +1,4 @@
-package web;
+package servlet;
 
 import java.io.IOException;
 
@@ -10,38 +10,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.DAO;
+
 @WebServlet("/UpdateServlet")
 public class UpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+	
 	public UpdateServlet() {
 		super();
 
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		SampleDAO dao = new SampleDAO();
+		DAO dao = new DAO();
 		request.setCharacterEncoding("UTF-8");
+		
+		String details=request.getParameter("details");
+		String remark=request.getParameter("remark");
+		String payment=request.getParameter("payment");
+		int amount=Integer.parseInt(request.getParameter("amount"));
 		int id = Integer.parseInt(request.getParameter("id"));
-		String details = request.getParameter("details");
-
-		String remark = request.getParameter("remark");
-
-		String payment = request.getParameter("payment");
-
-		int amount = Integer.parseInt(request.getParameter("amount"));
-
 		HttpSession session = request.getSession();
 		// 処理結果に応じてメッセージを変える
-		if (dao.update(id, details, remark, payment, amount) == 0) {
+		if (dao.update(details, remark, payment, amount,id) == 0) {
 			session.setAttribute("message", "更新失敗");
 		} else {
 			session.setAttribute("message", "更新完了");

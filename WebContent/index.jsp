@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ page import="model.Kakeibo"%>
 <!DOCTYPE html>
 
 <html lang="ja">
@@ -79,7 +80,7 @@ a:active {
 <body>
 	<div id="jb-container">
 		<div id="jb-header">
-			<h1>SIMPLE WEB-KAKEIBO</h1>
+		<div style="text-align:center">		<h1>簡単ウェブ家計簿</h1></div>
 		</div>
 		<div id="jb-content">
 
@@ -88,19 +89,26 @@ a:active {
 		<div id="jb-sidebar">
 			<h2>MENU</h2>
 			<ul>
-				<li><a href="SelectServlet">Fullview page</a></li>
-				<li><a href="insert.jsp">Insert page</a></li>
+				<li><a href="SelectServlet">一覧項目へ</a></li>
+				<br>
+				<li><a href="insert.jsp">家計簿記入へ</a></li>
 
 
 			</ul>
-			<h3>MEMO</h3>
+			<h2>MEMO</h2>
 			<ul>
-			<li>目標金額30万円節約</li>
+			<li>塵も積もれば山となる！</li>
+			<br>
+			<li>目指せ！億万長者
+		</li><br>
+		<li>5月1日から令和!
+		</li>
 			</ul>
 
 		</div>
 		<div id="jb-footer">
-			<p>Copyright © 2019 Shin</p>
+			<div style="text-align:center">	<p>Copyright © 2019 Shin</p>
+			</div>
 		</div>
 	</div>
 </body>

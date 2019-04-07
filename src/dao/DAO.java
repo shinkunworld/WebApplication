@@ -1,4 +1,4 @@
-package web;
+package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,12 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import model.Kakeibo;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.sql.Statement;
-import web.Kakeibo;
 
-public class SampleDAO {
+public class DAO {
 	Connection con = null;
 
 	// 接続メソッド
@@ -76,31 +77,6 @@ public class SampleDAO {
 		return list;
 	}
 
-	public void printSelectByID(int id) {
-		connection();
-		if (con != null) {
-			String sql = "select * from b where id = ?";
-			try {
-				PreparedStatement ps = con.prepareStatement(sql);
-				// set
-				ps.setInt(1, id);
-				ResultSet rs = ps.executeQuery();
-				while (rs.next()) {
-					System.out.println("id列の取得" + rs.getInt("id"));
-					System.out.println("imcome列の取得" + rs.getInt("income"));
-					System.out.println("expense列の取得" + rs.getInt("expense"));
-					System.out.println("details列の取得" + rs.getString("details"));
-
-				}
-				rs.close();
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				disconnection();
-			}
-		}
-	}
 
 	// sampletbに追加メソッド
 	public int insert(String details, String remark, String payment, int amount) {
@@ -129,7 +105,7 @@ public class SampleDAO {
 	}
 
 	// 変更メソッド
-	public int update(int id, String details, String remark, String payment, int amount) {
+	public int update(String details, String remark, String payment, int amount, int id) {
 		int rs = 0;
 		// InsertMiniの内容をペーストする
 		connection();
@@ -143,7 +119,7 @@ public class SampleDAO {
 				ps.setString(1, details);
 				ps.setString(2, remark);
 				ps.setString(3, payment);
-				ps.setString(4, payment);
+				ps.setInt(4, amount);
 				ps.setInt(5, id);
 				rs = ps.executeUpdate();
 				System.out.println("操作した行数は" + rs + "行です");

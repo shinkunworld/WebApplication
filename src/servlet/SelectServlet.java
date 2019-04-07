@@ -1,4 +1,4 @@
-package web;
+package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import dao.DAO;
+import model.Kakeibo;
 
 /**
  * Servlet implementation class SelectServlet
@@ -30,7 +33,7 @@ public class SelectServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SampleDAO dao = new SampleDAO();
+		DAO dao = new DAO();
 
 		ArrayList<Kakeibo> list =dao.selectAll();
 
